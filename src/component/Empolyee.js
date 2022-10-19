@@ -15,11 +15,11 @@ function Employee(props) {
           </p>
         </div>
 
-        <EditEmployee />
+        <EditEmployee id={props.id} name={props.name} role={props.role} updateEmployee={props.updateEmployee} />
 
       </div>
     </div>
   )
 };
-
+// 
 export default Employee
