@@ -102,7 +102,7 @@ export default function Header(props) {
         )
         }
       </Disclosure >
-      <div className='p-2 bg-blue-900 min-h-screen mx-w-7xl mx-auto'>
+      <div className='p-2 text-white bg-slate-700 min-h-screen mx-w-7xl mx-auto'>
         {props.children}
 
       </div>
