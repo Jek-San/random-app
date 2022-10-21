@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
+import { useNavigation } from 'react-router-dom'
 
 export default function Definition() {
 
   const [word, setWord] = useState([]);
-
 
   useEffect(() => {
     fetch('https://api.dictionaryapi.dev/api/v2/entries/en/helicopter')
@@ -18,6 +18,8 @@ export default function Definition() {
   return (
     <>
       <h1>Here is a Definition Page:</h1>
+
+      <p> here in zamar PC</p>
 
 
       {word.map((meaning) => {
