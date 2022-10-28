@@ -53,22 +53,28 @@ export default function Customers() {
   return (
     <>
       <h1>Here are our Customers</h1>
-      <ul>
-        {customers ? customers.map((customer) => {
-          return (
-            <li key={customer.id}>
-              <Link to={'/customers/' + customer.id}> {customer.name}</Link>
-            </li>
 
-          )
+      {customers ? customers.map((customer) => {
+        return (
+          <div
+            className="m-2"
+            key={customer.id} >
+            <Link to={'/customers/' + customer.id}>
+              <button
+                className="min-w-[200px] bg-purple-400 hover:bg-purple-700 text-white font-bold mr-2 py-2 px-4 rounded"
+              >{customer.name}</button>
 
-
-        }) : null}
-      </ul>
-      <AddCustomer
-        newCustomer={newCustomer}
-        show={show}
-        toggleShow={toggleShow} />
+            </Link>
+          </div>
+        );
+      })
+        : null}
+      <div className="ml-2 min-w-500px ">
+        <AddCustomer
+          newCustomer={newCustomer}
+          show={show}
+          toggleShow={toggleShow} />
+      </div>
     </>
   )
 }
