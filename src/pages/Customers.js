@@ -21,14 +21,14 @@ export default function Customers() {
     fetch(url, {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer' + localStorage.getItem('access'),
+        Authorization: 'Bearer ' + localStorage.getItem('access'),
       }
     })
       .then((response) => {
         if (response.status === 401) {
           navigate('/login')
         }
-        response.json()
+        return response.json()
       }
       )
       .then((data) => {
@@ -36,6 +36,8 @@ export default function Customers() {
       })
 
   }, [])
+
+
   function newCustomer(name, industry) {
     const data = { name: name, industry: industry }
     const url = baseUrl + 'api/customers/'
@@ -43,6 +45,7 @@ export default function Customers() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('access'),
       },
       body: JSON.stringify(data)
     })
