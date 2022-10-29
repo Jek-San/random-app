@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { baseUrl } from "../shared";
 
 export default function Login() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
+  const location = useLocation()
+  const navigate = useNavigate();
+
+
   function login(e) {
     e.preventDefault()
-    console.log("Button Login dipencet")
     const url = baseUrl + 'api/token/'
     fetch(url, {
       method: "POST",
@@ -24,7 +28,11 @@ export default function Login() {
     }).then((data) => {
       localStorage.setItem('access', data.access)
       localStorage.setItem('refresh', data.refresh)
-      console.log(localStorage)
+      navigate(location?.state?.previousUrl
+        ? location.state.previousUrl
+        : '/customers'
+      )
+
     }).catch((e) => { console.log(e) })
   }
   return (
@@ -70,7 +78,6 @@ export default function Login() {
     // </form>
     <form onSubmit={(e) => {
       e.preventDefault()
-      console.log("hello from login")
     }}
 
       id="form" className="w-full max-w-sm">
