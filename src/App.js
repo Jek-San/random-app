@@ -13,6 +13,7 @@ import Dictionary from './pages/Dictionary';
 import Definition from './pages/Definition';
 import NotFound from './component/NotFound';
 import Customer from './pages/Customer';
+import Login from './pages/Login';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
     <BrowserRouter>
       <Header>
         <Routes>
+          <Route path='/login' element={<Login />} />
           <Route path='/employees' element={<Employees />} />
           <Route path='/customers' element={<Customers />} />
           <Route path='/customers/:id' element={<Customer />} />

@@ -7,6 +7,9 @@ export default function Customers() {
 
   const [customers, setCustomers] = useState()
   const [show, setShow] = useState(false)
+  const navigate = useNavigate()
+
+
 
   function toggleShow() {
     setShow(!show);
@@ -14,9 +17,19 @@ export default function Customers() {
 
 
   useEffect(() => {
-    console.log("Fetching")
-    fetch(baseUrl + 'api/customers/')
-      .then((response) => response.json()
+    const url = baseUrl + 'api/customers/'
+    fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer' + localStorage.getItem('access'),
+      }
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          navigate('/login')
+        }
+        response.json()
+      }
       )
       .then((data) => {
         setCustomers(data.customers)
