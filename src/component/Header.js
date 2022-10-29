@@ -1,13 +1,13 @@
-import { Fragment } from 'react'
+import { useContext, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { NavLink } from 'react-router-dom'
+import { LoginContext } from '../App'
 
 const navigation = [
   { name: 'Employees', href: '/employees' },
   { name: 'Dictionary', href: '/dictionary' },
   { name: 'Customers', href: '/customers' },
-  { name: 'Calendar', href: 'other2' },
 ]
 
 function classNames(...classes) {
@@ -15,6 +15,11 @@ function classNames(...classes) {
 }
 
 export default function Header(props) {
+  const [loggedIn, setLoggedIn] = useContext(LoginContext)
+
+  useEffect(() => {
+    console.log(loggedIn)
+  })
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">
@@ -50,6 +55,12 @@ export default function Header(props) {
                           {item.name}
                         </NavLink>
                       ))}
+                      <NavLink
+                        to={loggedIn ? '/logout' : '/login'}
+                        className="px-3 py-2 rounded-md text-sm font-medium no-underline   text-gray-300 hover:  hover:text-white"
+                      >
+                        {loggedIn ? 'Logout' : 'Login'}
+                      </NavLink>
                     </div>
                   </div>
                 </div>
@@ -71,18 +82,6 @@ export default function Header(props) {
             <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 px-2 pt-2 pb-3">
                 {navigation.map((item) => (
-                  // <Disclosure.Button
-                  //   key={item.name}
-                  //   as="a"
-                  //   href={item.href}
-                  //   className={classNames(
-                  //     item.current ? 'no-underline bg-gray-900 text-white' : 'no-underline text-gray-300 hover:bg-gray-700 hover:text-white',
-                  //     'block px-3 py-2 rounded-md text-base font-medium'
-                  //   )}
-                  //   aria-current={item.current ? 'page' : undefined}
-                  // >
-                  //   {item.name}
-                  // </Disclosure.Button>
                   <NavLink
                     key={item.name}
                     to={item.href}
@@ -96,6 +95,12 @@ export default function Header(props) {
                     {item.name}
                   </NavLink>
                 ))}
+                <NavLink
+                  to={loggedIn ? '/logout' : '/login'}
+                  className="block px-3 py-2 rounded-md text-base font-medium no-underline  text-gray-300 hover:bg-gray-700 hover:text-white'"
+                >
+                  {loggedIn ? 'Logout' : 'Login'}
+                </NavLink>
               </div>
             </Disclosure.Panel>
           </>

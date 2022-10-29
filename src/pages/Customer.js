@@ -44,7 +44,7 @@ export default function Customer() {
           //render a 404 component
           setNotFound(true)
         }
-        else if (response.status === 402) {
+        else if (response.status === 401) {
           navigate('/login', {
             state: {
               previousUrl: location.pathname,
