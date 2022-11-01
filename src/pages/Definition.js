@@ -2,48 +2,58 @@ import { useEffect, useState } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom";
 import DefinitionSearch from "../component/DefinitionSeacrh";
 import NotFound from "../component/NotFound";
+import useFetch from "../hooks/UseFetch";
 
 export default function Definition() {
 
-  const [word, setWord] = useState();
-  const [notFound, setNotfound] = useState(false)
+  // const [word, setWord] = useState();
+  // const [notFound, setNotfound] = useState(false)
 
   const navigate = useNavigate()
   let { find } = useParams()
 
-  const [error, setError] = useState(false)
+  // const [error, setError] = useState(false)
+
+  const [word, errorStatus] = useFetch(
+    'https://api.dictionaryapi.dev/api/v2/entries/en/' + find
+  )
 
   useEffect(() => {
-    // const url = 'https://httpstat.us/500'
-    const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
-    fetch(url + find)
-      .then((response) => {
-        // console.log(response.status)
-        if (response.status === 404) {
-          setNotfound(true)
+    console.log(word)
+  })
 
-        } else if (response.status === 401) {
-          navigate('/login')
-        } else if (response.status === 500) {
-          // setServerError(true)
-        }
-        console.log(response.ok)
-        if (!response.ok) {
-          setError(true);
-        }
-        return response.json()
-      })
-      .then((data) => {
-        setWord(data[0].meanings);
-        // console.log(data[0].meanings);
+  // useEffect(() => {
+  //   // const url = 'https://httpstat.us/500'
+  //   const url = 'https://api.dictionaryapi.dev/api/v2/entries/en/'
+  //   fetch(url + find)
+  //     .then((response) => {
+  //       // console.log(response.status)
+  //       if (response.status === 404) {
+  //         setNotfound(true)
 
-      })
-      .catch((e) => {
-        console.log(e.message)
-      })
-  }, []);
+  //       } else if (response.status === 401) {
+  //         navigate('/login')
+  //       } else if (response.status === 500) {
+  //         // setServerError(true)
+  //       }
+  //       console.log(response.ok)
+  //       if (!response.ok) {
+  //         setError(true);
+  //       }
+  //       return response.json()
+  //     })
+  //     .then((data) => {
+  //       setWord(data[0].meanings);
+  //       // console.log(data[0].meanings);
 
-  if (notFound === true) {
+  //     })
+  //     .catch((e) => {
+  //       console.log(e.message)
+  //     })
+  // }, []);
+
+
+  if (errorStatus === 401) {
     return (<>
       <h1>The word you looking was not found </h1>
       <DefinitionSearch className="flex justify-center" />
@@ -52,7 +62,7 @@ export default function Definition() {
     </>
     )
   }
-  if (error === true) {
+  if (errorStatus) {
     return (<>
       <h1>Something when wrong tryAgain </h1>
       <Link to="/dictionary">Search Another word</Link>
@@ -63,10 +73,10 @@ export default function Definition() {
 
   return (
     <>
-      {word ? (
+      {word?.[0]?.meanings ? (
         <>
           <h1>Here is a Definition Page of : </h1>
-          {word.map((meaning, i) => {
+          {word[0].meanings.map((meaning, i) => {
             return (
               <p key={i}>
                 {meaning.partOfSpeech + ' '}:
@@ -82,4 +92,4 @@ export default function Definition() {
 
     </>
   )
-}
+} 
