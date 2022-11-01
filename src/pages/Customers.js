@@ -4,6 +4,7 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import AddCustomer from "../component/AddCustomer"
 import { baseUrl } from "../shared"
 import { LoginContext } from "../App"
+import useFetch from "../hooks/UseFetch"
 
 export default function Customers() {
 
@@ -18,33 +19,42 @@ export default function Customers() {
   function toggleShow() {
     setShow(!show);
   }
+  const [data, errorStatus] = useFetch(baseUrl + 'api/customers/', 'GET',
+    {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('access'),
+    }
 
-
+  )
   useEffect(() => {
-    const url = baseUrl + 'api/customers/'
-    fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('access'),
-      }
-    })
-      .then((response) => {
-        if (response.status === 401) {
-          setLoggedIn(false)
-          navigate('/login', {
-            state: {
-              previousUrl: location.pathname,
-            }
-          })
-        }
-        return response.json()
-      }
-      )
-      .then((data) => {
-        setCustomers(data.customers)
-      })
+    console.log('data: ', data, 'Error: ', errorStatus)
+  })
 
-  }, [])
+  // useEffect(() => {
+  //   const url = baseUrl + 'api/customers/'
+  //   fetch(url, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: 'Bearer ' + localStorage.getItem('access'),
+  //     }
+  //   })
+  //     .then((response) => {
+  //       if (response.status === 401) {
+  //         setLoggedIn(false)
+  //         navigate('/login', {
+  //           state: {
+  //             previousUrl: location.pathname,
+  //           }
+  //         })
+  //       }
+  //       return response.json()
+  //     }
+  //     )
+  //     .then((data) => {
+  //       setCustomers(data.customers)
+  //     })
+
+  // }, [])
 
 
   function newCustomer(name, industry) {
@@ -75,32 +85,32 @@ export default function Customers() {
       })
 
   }
+  return <>test</>
+  // return (
+  //   <>
+  //     <h1>Here are our Customers</h1>
 
-  return (
-    <>
-      <h1>Here are our Customers</h1>
+  //     {customers ? customers.map((customer) => {
+  //       return (
+  //         <div
+  //           className="m-2"
+  //           key={customer.id} >
+  //           <Link to={'/customers/' + customer.id}>
+  //             <button
+  //               className="min-w-[200px] bg-purple-400 hover:bg-purple-700 text-white font-bold mr-2 py-2 px-4 rounded"
+  //             >{customer.name}</button>
 
-      {customers ? customers.map((customer) => {
-        return (
-          <div
-            className="m-2"
-            key={customer.id} >
-            <Link to={'/customers/' + customer.id}>
-              <button
-                className="min-w-[200px] bg-purple-400 hover:bg-purple-700 text-white font-bold mr-2 py-2 px-4 rounded"
-              >{customer.name}</button>
-
-            </Link>
-          </div>
-        );
-      })
-        : null}
-      <div className="ml-2 min-w-500px ">
-        <AddCustomer
-          newCustomer={newCustomer}
-          show={show}
-          toggleShow={toggleShow} />
-      </div>
-    </>
-  )
+  //           </Link>
+  //         </div>
+  //       );
+  //     })
+  //       : null}
+  //     <div className="ml-2 min-w-500px ">
+  //       <AddCustomer
+  //         newCustomer={newCustomer}
+  //         show={show}
+  //         toggleShow={toggleShow} />
+  //     </div>
+  //   </>
+  // )
 }
