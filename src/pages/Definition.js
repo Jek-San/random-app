@@ -14,7 +14,7 @@ export default function Definition() {
 
   // const [error, setError] = useState(false)
 
-  const [word, errorStatus] = useFetch(
+  const { data: [{ meanings: word }] = [{}], errorStatus } = useFetch(
     'https://api.dictionaryapi.dev/api/v2/entries/en/' + find
   )
 
@@ -73,10 +73,10 @@ export default function Definition() {
 
   return (
     <>
-      {word?.[0]?.meanings ? (
+      {word ? (
         <>
           <h1>Here is a Definition Page of : </h1>
-          {word[0].meanings.map((meaning, i) => {
+          {word.map((meaning, i) => {
             return (
               <p key={i}>
                 {meaning.partOfSpeech + ' '}:

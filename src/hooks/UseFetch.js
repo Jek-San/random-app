@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export default function useFetch(url, method, headers, body) {
+export default function useFetch(url, { method, headers, body } = {}) {
   const [data, setData] = useState()
   const [errorStatus, setErrorStatus] = useState()
   const navigate = useNavigate()
   const location = useLocation()
-  useEffect(() => {
+  function request() {
     fetch(url, {
       method: method,
       headers: headers,
-      body: body
+      body: body,
     })
       .then((response) => {
-        if (!response.ok) {
-          throw (response.status)
-        }
         if (response.status === 401) {
 
           navigate('/login', {
@@ -23,15 +20,83 @@ export default function useFetch(url, method, headers, body) {
               previousUrl: location.pathname,
             }
           })
+          if (!response.ok) {
+            throw (response.status)
+          }
         }
 
         return response.json()
       }).then((data) => {
         setData(data)
-        console.log('console lognya:', data)
       }).catch((e) => {
         setErrorStatus(e)
       })
-  }, [])
-  return [data, errorStatus];
+  }
+
+  function appendData(newData) {
+    fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(newData)
+    }).then((response) => {
+      if (response.status === 401) {
+
+        navigate('/login', {
+          state: {
+            previousUrl: location.pathname,
+          }
+        })
+      }
+
+
+      if (!response.ok) {
+        throw (response.status)
+      }
+      return response.json()
+    })
+      .then((d) => {
+        const submitted = Object.values(d)[0]
+        console.log('in the then', Object.values(d)[0])
+        console.log(data)
+        const newState = { ...data }
+        Object.values(newState)[0].push(submitted)
+        setData(newState)
+
+      }).catch((e) => {
+        console.log(e)
+        setErrorStatus(e)
+      })
+
+  }
+
+  function deleteById(id) {
+    console.log('item yang akan di delete', id)
+    // fetch(url + id, {
+    //   method: 'DELETE',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: 'Bearer ' + localStorage.getItem('access'),
+    //   },
+    // })
+    //   .then((response) => {
+    //     if (response.status === 401) {
+    //       navigate('/login', {
+    //         state: {
+    //           previousUrl: location.pathname,
+    //         }
+    //       })
+    //     }
+    //     if (!response.ok) {
+    //       throw (response.status)
+    //     }
+    //     navigate('/customers')
+    //   })
+    //   .catch((e) => {
+    //     setErrorStatus(e)
+    //   })
+
+
+  }
+
+  return { request, appendData, deleteById, data, errorStatus };
 }
