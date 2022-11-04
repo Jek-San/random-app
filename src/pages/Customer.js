@@ -65,40 +65,40 @@ export default function Customer() {
 
   function updateCustomer(e) {
     e.preventDefault();
-    const url = baseUrl + 'api/customers/' + id;
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + localStorage.getItem('access'),
-      },
-      body: JSON.stringify(tempCustomer)
-    })
-      .then((response) => {
-        console.log('response', response)
-        if (response.status === 401) {
-          navigate('/login', {
-            state: {
-              previousUrl: location.pathname,
-            }
-          })
-        }
-        if (!response.ok) {
-          throw new Error('Somthing went wrong')
-        }
-        return response.json()
+    // const url = baseUrl + 'api/customers/' + id;
+    // fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Authorization: 'Bearer ' + localStorage.getItem('access'),
+    //   },
+    //   body: JSON.stringify(tempCustomer)
+    // })
+    //   .then((response) => {
+    //     console.log('response', response)
+    //     if (response.status === 401) {
+    //       navigate('/login', {
+    //         state: {
+    //           previousUrl: location.pathname,
+    //         }
+    //       })
+    //     }
+    //     if (!response.ok) {
+    //       throw new Error('Somthing went wrong')
+    //     }
+    //     return response.json()
 
-      })
-      .then((data) => {
-        setChanged(false)
-        setCustomer(data.customer)
-        console.log(data)
-        setError(undefined)
-      })
-      .catch((e) => {
-        console.log(e)
-        setError(e.message)
-      })
+    //   })
+    //   .then((data) => {
+    //     setChanged(false)
+    //     setCustomer(data.customer)
+    //     console.log(data)
+    //     setError(undefined)
+    //   })
+    //   .catch((e) => {
+    //     console.log(e)
+    //     setError(e.message)
+    //   })
   }
 
 

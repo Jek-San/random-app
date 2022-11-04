@@ -5,9 +5,11 @@ import { NavLink } from 'react-router-dom'
 import { LoginContext } from '../App'
 
 const navigation = [
+  { name: 'Profil', href: '/profil' },
   { name: 'Employees', href: '/employees' },
   { name: 'Dictionary', href: '/dictionary' },
   { name: 'Customers', href: '/customers' },
+  { name: 'Cart', href: '/dashboard' },
 ]
 
 function classNames(...classes) {
@@ -139,7 +141,7 @@ export default function Header(props) {
         )
         }
       </Disclosure >
-      <div className='p-2 text-white bg-slate-700 min-h-screen mx-w-7xl mx-auto'>
+      <div className=' text-white bg-slate-700 min-h-screen mx-w-7xl mx-auto'>
         {props.children}
 
       </div>

@@ -56,47 +56,19 @@ export default function useFetch(url, { method, headers, body } = {}) {
     })
       .then((d) => {
         const submitted = Object.values(d)[0]
-        console.log('in the then', Object.values(d)[0])
-        console.log(data)
         const newState = { ...data }
         Object.values(newState)[0].push(submitted)
         setData(newState)
 
       }).catch((e) => {
-        console.log(e)
         setErrorStatus(e)
       })
 
   }
 
-  function deleteById(id) {
-    console.log('item yang akan di delete', id)
-    // fetch(url + id, {
-    //   method: 'DELETE',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Authorization: 'Bearer ' + localStorage.getItem('access'),
-    //   },
-    // })
-    //   .then((response) => {
-    //     if (response.status === 401) {
-    //       navigate('/login', {
-    //         state: {
-    //           previousUrl: location.pathname,
-    //         }
-    //       })
-    //     }
-    //     if (!response.ok) {
-    //       throw (response.status)
-    //     }
-    //     navigate('/customers')
-    //   })
-    //   .catch((e) => {
-    //     setErrorStatus(e)
-    //   })
 
 
-  }
 
-  return { request, appendData, deleteById, data, errorStatus };
+
+  return { request, appendData, data, errorStatus };
 }

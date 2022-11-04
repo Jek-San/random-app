@@ -34,9 +34,9 @@ export default function Customers() {
     request()
   }, [])
 
-  useEffect(() => {
-    console.log('request:', request, 'appendData:', appendData, ' data: ', customers, 'Error: ', errorStatus)
-  })
+  // useEffect(() => {
+  //   console.log('request:', request, 'appendData:', appendData, ' data: ', customers, 'Error: ', errorStatus)
+  // })
 
 
 

@@ -1,3 +1,273 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+*,
+html,
+body {
+  box-sizing: border-box;
+  font-family: Helvetica;
+  scroll-behavior: smooth;
+}
+
+
+
+:root {
+  --dark-blue: #1A2238;
+  --semidark-purple: #9DAAF2;
+  --semidark-orange: #FF6A3D;
+  --semidark-yellow: #F4DB7D;
+}
+
+
+
+.container-header {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  height: max-content;
+  color: #eaeaea;
+
+}
+
+.container-ul {
+  display: flex;
+
+}
+
+.container-navbar {
+  display: flex;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+.liProfile {
+
+  list-style-type: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: all .5s ease 0s;
+
+}
+
+.liProfile:hover {
+  color: var(--semidark-orange);
+  transform: rotate(2deg);
+}
+
+.liProfile a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #eaeaea;
+
+}
+
+.liProfile a:hover {
+
+
+  color: var(--semidark-orange);
+  transform: rotate(2deg);
+}
+
+.logo-title {
+  margin-right: auto;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all .5s ease 0s;
+  font-size: 25px;
+}
+
+.logo-img {
+  width: 70px;
+  height: 70px;
+  margin-left: 8px;
+}
+
+.logo:hover {
+  color: var(--semidark-orange);
+  transform: rotate(2deg);
+}
+
+.btn-cta {
+  margin-right: 10px;
+  border: none;
+  font-size: 20px;
+  padding: 6px 12px;
+  background-color: var(--semidark-orange);
+  color: #eaeaea;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.container-content {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  /* padding: 30px; */
+
+  /* background-color: #9DAAF2; */
+}
+
+.content-1 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100vh;
+  margin-bottom: 0px;
+
+  /* background-color: #9DAAF2; */
+
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bolder;
+  gap: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+
+}
+
+.description {
+  font-size: 20px;
+  font-weight: lighter;
+  margin-bottom: 10px;
+}
+
+.img {
+  max-width: 409px;
+  max-height: auto;
+  margin-top: 20px;
+}
+
+.parallax {
+
+  background-image: url(/public/assets/icon/bg-1.jpg);
+  /* background-image: url('assets/icon/CUYUNIVERSE.jpg'); */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: cover;
+  height: 100vh;
+}
+
+.tentang {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  background-color: var(--dark-blue);
+  color: #eaeaea;
+
+}
+
+.card {
+
+
+  /* display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 3px;
+    justify-content: center;
+   
+    align-items: center;
+    */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: auto;
+  padding: 3px;
+
+
+
+}
+
+.card-item {
+
+  background-color: var(--semidark-purple);
+  color: #222222;
+  padding: 20px;
+
+
+}
+
+.icon {
+  width: 75px;
+  height: 75px;
+}
+
+.title-card {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: var(--dark-blue);
+
+
+}
+
+/* Renposnsive */
+@media screen and (max-width: 500px) {
+
+  .content-1 {
+    width: 100%;
+  }
+
+  .img {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+  }
+
+  .card {
+    width: 100%;
+    padding: 0;
+    gap: 0;
+  }
+
+  .card-item {
+    width: 100%;
+    opacity: 0.9;
+  }
+
+  .container-navbar {
+    display: flex;
+    justify-content: left;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--dark-blue);
+    width: 100%;
+  }
+
+  .container-header {
+    padding: 18px;
+  }
+
+  .footer {
+    margin-bottom: 77px;
+    padding: 10px;
+  }
+}

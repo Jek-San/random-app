@@ -11,6 +11,9 @@ import Customer from './pages/Customer';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { baseUrl } from './shared';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profil';
+import Homepage from './pages/Homepage';
 
 export const LoginContext = createContext();
 function App() {
@@ -42,7 +45,9 @@ function App() {
     refreshToken();
     setInterval(refreshToken, minutes * 10)
   }, [])
-
+  useEffect(() => {
+    setLoggedIn(false);
+  }, [])
 
 
   const [loggedIn, setLoggedIn] = useState(localStorage.access ? true : false);
@@ -57,6 +62,8 @@ function App() {
       <BrowserRouter>
         <Header>
           <Routes>
+            <Route path='/' element={<Homepage />} />
+            <Route path='/profil' element={<Profile />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
             <Route path='/employees' element={<Employees />} />
@@ -65,6 +72,7 @@ function App() {
             <Route path='/dictionary' element={<Dictionary />} />
             <Route path='/dictionary/:find' element={<Definition />} />
             <Route path='/404' element={<NotFound />} />
+            <Route path='/dashboard' element={<Dashboard />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </Header>
