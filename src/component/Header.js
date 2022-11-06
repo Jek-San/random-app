@@ -1,8 +1,9 @@
 import { useContext, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { LoginContext } from '../App'
+
 
 const navigation = [
   { name: 'Profil', href: '/profil' },
@@ -60,12 +61,13 @@ export default function Header(props) {
                       {loggedIn ?
 
                         <NavLink
-                          to={'/logout'}
+                          to={'/profil'}
                           className="px-3 py-2 rounded-md text-sm font-medium no-underline   text-gray-300 hover:  hover:text-white"
                           onClick={() => {
                             console.log('klik')
                             setLoggedIn(false)
                             localStorage.clear()
+
                           }}
                         >
                           Logout
@@ -122,6 +124,7 @@ export default function Header(props) {
                       console.log('klik')
                       setLoggedIn(false)
                       localStorage.clear()
+
                     }}
                   >
                     Logout

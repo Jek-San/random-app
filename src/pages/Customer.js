@@ -109,7 +109,7 @@ export default function Customer() {
       {customer ?
 
         <div
-          className="mt-2">
+          className="pt-3 pl-3">
           <form
             className="w-full max-w-sm"
             onSubmit={updateCustomer}
