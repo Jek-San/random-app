@@ -1,7 +1,0 @@
-{
-  "name": "testreactapp",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}
