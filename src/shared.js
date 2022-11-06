@@ -1,1 +1,1 @@
-export const baseUrl = 'http://apiapaa.herokuapp.com/'
+export const baseUrl = 'https://apiapaa.herokuapp.com/'
