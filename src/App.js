@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import './index.css';
 import Header from './component/Header';
 import Employees from './pages/Employees';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom'
 import Customers from './pages/Customers';
 import Dictionary from './pages/Dictionary';
 import Definition from './pages/Definition';
@@ -59,7 +59,7 @@ function App() {
   }
   return (
     <LoginContext.Provider value={[loggedIn, changeLoggedIn]}>
-      <BrowserRouter>
+      <HashRouter>
         <Header>
           <Routes>
             <Route path='/' element={<Homepage />} />
@@ -76,7 +76,7 @@ function App() {
             <Route path='*' element={<NotFound />} />
           </Routes>
         </Header>
-      </BrowserRouter>
+      </HashRouter>
     </LoginContext.Provider>
   )
 }
