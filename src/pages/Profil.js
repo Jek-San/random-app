@@ -31,7 +31,7 @@ export default function Profile() {
       <div className="content-1">
         <p className="title">Hello Ihsan here</p>
         <p className="description">Seorang lulusan Teknik informatika tapi masih belajar ngoding :) </p>
-        <img src="/assets/icon/ihsan.jpg" alt="gambar1" className="img" />
+        <img src="assets/icon/ihsan.jpg" alt="gambar1" className="img" />
       </div>
     </div>
     <div
