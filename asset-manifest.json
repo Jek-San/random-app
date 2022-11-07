@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Jek-San.github.io/random-app/static/css/main.aa41b1ca.css",
-    "main.js": "/Jek-San.github.io/random-app/static/js/main.f7f9f82f.js",
-    "static/js/787.e7d47987.chunk.js": "/Jek-San.github.io/random-app/static/js/787.e7d47987.chunk.js",
-    "static/media/bg-1.jpg": "/Jek-San.github.io/random-app/static/media/bg-1.be09ebed36e004c5489a.jpg",
-    "index.html": "/Jek-San.github.io/random-app/index.html",
-    "main.aa41b1ca.css.map": "/Jek-San.github.io/random-app/static/css/main.aa41b1ca.css.map",
-    "main.f7f9f82f.js.map": "/Jek-San.github.io/random-app/static/js/main.f7f9f82f.js.map",
-    "787.e7d47987.chunk.js.map": "/Jek-San.github.io/random-app/static/js/787.e7d47987.chunk.js.map"
+    "main.css": "/random-app/static/css/main.ccdaef1d.css",
+    "main.js": "/random-app/static/js/main.d3696037.js",
+    "static/js/787.e7d47987.chunk.js": "/random-app/static/js/787.e7d47987.chunk.js",
+    "static/media/bg-1.jpg": "/random-app/static/media/bg-1.be09ebed36e004c5489a.jpg",
+    "index.html": "/random-app/index.html",
+    "main.ccdaef1d.css.map": "/random-app/static/css/main.ccdaef1d.css.map",
+    "main.d3696037.js.map": "/random-app/static/js/main.d3696037.js.map",
+    "787.e7d47987.chunk.js.map": "/random-app/static/js/787.e7d47987.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aa41b1ca.css",
-    "static/js/main.f7f9f82f.js"
+    "static/css/main.ccdaef1d.css",
+    "static/js/main.d3696037.js"
   ]
 }
