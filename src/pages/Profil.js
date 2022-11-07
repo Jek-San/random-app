@@ -1,3 +1,4 @@
+import ihsan from './ihsan.jpg'
 export default function Profile() {
   function redirInstagram() {
     window.open('https://instagram.com/ihsanzack', '_blank', 'noopener,noreferrer');
@@ -31,7 +32,7 @@ export default function Profile() {
       <div className="content-1">
         <p className="title">Hello Ihsan here</p>
         <p className="description">Seorang lulusan Teknik informatika tapi masih belajar ngoding :) </p>
-        <img src="assets/icon/ihsan.jpg" alt="gambar1" className="img" />
+        <img src={ihsan} alt="gambar1" className="img" />
       </div>
     </div>
     <div
