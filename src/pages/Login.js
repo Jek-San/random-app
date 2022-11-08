@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LoginContext } from "../App";
 import { baseUrl } from "../shared";
 
@@ -122,9 +122,13 @@ export default function Login() {
         <div className="md:w-1/3"></div>
         <button
           form="login"
-          onClick={login} className='bg-slate-400 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded'
+          onClick={login} className='mr-10 p-3 bg-slate-400 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded'
         >
           Login
+        </button>
+        <button
+          className='bg-slate-400 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded'>
+          <Link className='no-underline text-white ' to="/register">Sign Up</Link>
         </button>
       </div>
     </form>
